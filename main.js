@@ -8,16 +8,19 @@ function handleClickSquare (event) {
   square.classList.replace(getColor(square), getColor(brush));
 }
 
-for (const square of document.querySelectorAll('.square')) {
+const squares = document.querySelectorAll('.square')
+
+for (const square of squares) {
   square.addEventListener('click', handleClickSquare)
 };
-
 
 function handleClickPaletteColor (event) {
   const brush = document.querySelector('.current-brush');
   brush.classList.replace(getColor(brush), getColor(event.target));
 }
-  
-for (const paletteColor of document.querySelectorAll('.palette-color')) {
+
+const paletteColors = document.querySelectorAll('.palette-color');
+
+for (const paletteColor of paletteColors) {
   paletteColor.addEventListener('click', handleClickPaletteColor);
 };
