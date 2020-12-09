@@ -1,34 +1,28 @@
-let mouseDown = false;
-
-function getColor(element) {
-    return element.classList[1];
+const getColor = (element) => {
+  return element.classList[1];
 }
 
-function handleClickSquare (event) {
-    const square = event.target;
-    const brush = document.querySelector('.current-brush');
-    square.classList.replace(getColor(square), getColor(brush));
-    mouseDown = false;
+const handleClickSquare = (event) => {
+  const square = event.target;
+  const brush = document.querySelector('.current-brush');
+  square.classList.replace(square.classList[1], brush.classList[1]);
 }
 
-function handleMouseOverSquare (event) {
-  if (mouseDown) {
-    const square = event.target;
-    const brush = document.querySelector('.current-brush');
-    square.classList.replace(getColor(square), getColor(brush));
-  }
+const handleMouseOverSquare = (event) => {
+  const square = event.target;
+  const brush = document.querySelector('.current-brush');
+  square.classList.replace(getColor(square), getColor(brush));
 }
 
 const squares = document.querySelectorAll('.square')
 
 for (const square of squares) {
-  square.addEventListener('mouseenter', handleMouseOverSquare)
   square.addEventListener('click', handleClickSquare)
 };
 
-function handleClickPaletteColor (event) {
+const handleClickPaletteColor = (event) => {
   const brush = document.querySelector('.current-brush');
-  brush.classList.replace(getColor(brush), getColor(event.target));
+  brush.classList.replace(brush.classList[1], event.target.classList[1]);
 }
 
 const paletteColors = document.querySelectorAll('.palette-color');
@@ -36,11 +30,3 @@ const paletteColors = document.querySelectorAll('.palette-color');
 for (const paletteColor of paletteColors) {
   paletteColor.addEventListener('click', handleClickPaletteColor);
 };
-
-document.body.addEventListener('mousedown', () => {
-  mouseDown = true;
-})
-
-document.body.addEventListener('mouseup', () => {
-  mouseDown = false;
-})
